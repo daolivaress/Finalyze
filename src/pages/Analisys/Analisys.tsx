@@ -25,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSpring, animated } from "react-spring";
+import HelpButton from "@/components/common/HelpButton/HelpButton";
 
 type AnalysisProps = {
   title: string;
@@ -515,6 +516,7 @@ const Analysis = ({ title }: AnalysisProps) => {
             />
           </div>
         </div>
+        <HelpButton/>
       </section>
     </BaseLayout>
   );

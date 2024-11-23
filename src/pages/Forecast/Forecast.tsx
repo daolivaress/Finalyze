@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import HelpButton from "@/components/common/HelpButton/HelpButton";
 
 export const indicators = [
   "ROTACION INVENTARIO",
@@ -166,6 +167,7 @@ const Forecast = ({ title }: { title: string }) => {
             )}
           </div>
         </div>
+        <HelpButton/>
       </section>
     </BaseLayout>
   );
