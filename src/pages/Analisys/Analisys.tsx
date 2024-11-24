@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BaseLayout from "../../layout/BaseLayout/BaseLayout";
 import LineChart from "../../components/charts/LineChart/LineChart";
 import BarChart from "../../components/charts/BarChart/BarChart";
@@ -207,8 +207,6 @@ const Analysis = ({ title }: AnalysisProps) => {
 
   const { liquidez } = context.getLastTwoMonthsLIQ();
 
-  console.log("Liquidez:", liquidez);
-
   const currentLiquidity = liquidez[0];
 
   const props = useSpring({
@@ -225,6 +223,18 @@ const Analysis = ({ title }: AnalysisProps) => {
     liquidez.length >= 2
       ? context.calculatePercentageChange(liquidez[0], liquidez[1])
       : 0;
+
+  const [liquidityClass, setLiquidityClass] = useState("");
+
+  useEffect(() => {
+    const newClass =
+      currentLiquidity < 1.0
+        ? "bg-red-100 border-red-300 animated-bg-red"
+        : currentLiquidity >= 1.0 && currentLiquidity <= 1.5
+        ? "bg-yellow-100 border-yellow-300 animated-bg-yellow"
+        : "bg-green-100 border-green-300 animated-bg-green";
+    setLiquidityClass(newClass);
+  }, [currentLiquidity]);
 
   return (
     <BaseLayout>
@@ -348,13 +358,12 @@ const Analysis = ({ title }: AnalysisProps) => {
                       className="w-full bg-black text-white text-xs px-4 py-2 rounded-lg hover:bg-neutral-800 hover:scale-105 transition-all"
                       onClick={handleGenerateChart}
                     >
-                      Generar
+                      Generar gráfica
                     </button>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-
             <form
               className="hidden lg:flex flex-col md:flex-row max-lg:gap-2 gap-6 justify-center items-center pt-4 pb-6"
               onSubmit={(e) => {
@@ -437,7 +446,7 @@ const Analysis = ({ title }: AnalysisProps) => {
                 type="submit"
                 className="bg-black text-white px-4 py-2 text-sm rounded-lg hover:bg-neutral-800 hover:scale-105 transition-all"
               >
-                Generar
+                Generar gráfica
               </button>
             </form>
 
@@ -469,17 +478,11 @@ const Analysis = ({ title }: AnalysisProps) => {
             <BarChart
               dataset={ROIDataset}
               title="ROI (%) desde 2023 a 2024"
-              ylabel="Porcentaje"
+              ylabel="ROI (%)"
             />
           </div>
           <div
-            className={`relative bg-white border-gray-300 w-full rounded-xl flex flex-col items-end justify-end p-8 border overflow-hidden ${
-              currentLiquidity < 1.0
-                ? "bg-red-100 border-red-300 animated-bg-red"
-                : currentLiquidity >= 1.0 && currentLiquidity <= 1.5
-                ? "bg-yellow-100 border-yellow-300 animated-bg-yellow"
-                : "bg-green-100 border-green-300 animated-bg-green"
-            }`}
+            className={`relative bg-white border-gray-300 w-full rounded-xl flex flex-col items-end justify-end p-8 border overflow-hidden ${liquidityClass}`}
           >
             <h3 className="text-2xl md:text-4xl font-semibold absolute top-0 left-0 m-8 z-10">
               Liquidez
@@ -487,7 +490,8 @@ const Analysis = ({ title }: AnalysisProps) => {
             <div className="font-extrabold flex text-6xl md:text-8xl z-10">
               <animated.p>
                 {props.number.to((n) => `${n.toFixed(2)}`)}
-              </animated.p>%  
+              </animated.p>
+              %
             </div>
             <div className="z-10">
               <p className="text-neutral-600 antialiased">
@@ -497,7 +501,6 @@ const Analysis = ({ title }: AnalysisProps) => {
                 % respecto al mes pasado
               </p>
             </div>
-            {/* Fondo animado */}
             <div className="absolute inset-0 bg-opacity-20 z-0 pointer-events-none"></div>
           </div>
 
@@ -516,7 +519,13 @@ const Analysis = ({ title }: AnalysisProps) => {
             />
           </div>
         </div>
-        <HelpButton/>
+        <HelpButton>
+          <p>
+            La seccion de <strong>Analisis</strong> proporciona una descripción
+            general instantánea de las métricas financieras clave y el desempeño
+            de la empresa
+          </p>
+        </HelpButton>
       </section>
     </BaseLayout>
   );

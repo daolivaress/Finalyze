@@ -41,7 +41,7 @@
 }
 
 .animated-bg-yellow {
-  background: linear-gradient(270deg, #fff2cc, #fff599);
+  background: linear-gradient(270deg, #fff2cc, #fff199);
   background-size: 400% 400%;
   animation: move-bg 6s ease infinite;
 }

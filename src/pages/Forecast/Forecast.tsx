@@ -27,7 +27,6 @@ export const indicators = [
 ];
 
 const Forecast = ({ title }: { title: string }) => {
-
   const [selectedIndicator, setSelectedIndicator] = useState<string | null>(
     null
   );
@@ -91,7 +90,6 @@ const Forecast = ({ title }: { title: string }) => {
       };
 
       setIndicatorData(formattedData);
-      console.log("Datos del indicador:", formattedData);
     } catch (error) {
       console.error("Error al obtener los datos del indicador:", error);
       alert(
@@ -99,8 +97,6 @@ const Forecast = ({ title }: { title: string }) => {
       );
     }
   };
-
-  console.log("Indicador seleccionado:", selectedIndicator);
 
   return (
     <BaseLayout>
@@ -146,7 +142,7 @@ const Forecast = ({ title }: { title: string }) => {
                 {formatIndicator(indicator)}
               </button>
             ))}
-          </div>  
+          </div>
           <div className="bg-white border border-gray-300 w-full rounded-xl max-lg:max-w-[800px] xl:max-w-screen-xl mx-auto flex flex-row-reverse items-center py-8 px-2 md:px-12 gap-4 relative">
             <div
               id="chart-filters"
@@ -157,7 +153,9 @@ const Forecast = ({ title }: { title: string }) => {
             {indicatorData ? (
               <LineChart
                 dataset={indicatorData}
-                title={`Pronóstico de ${formatIndicator(selectedIndicator as string)}`}
+                title={`Pronóstico de ${formatIndicator(
+                  selectedIndicator as string
+                )}`}
                 ylabel={formatIndicator(selectedIndicator as string)}
               />
             ) : (
@@ -167,7 +165,12 @@ const Forecast = ({ title }: { title: string }) => {
             )}
           </div>
         </div>
-        <HelpButton/>
+        <HelpButton>
+          <p>
+            En la seccion de <strong>Pronósticos</strong> encontraras valores
+            previstos para métricas clave basadas en datos históricos.
+          </p>
+        </HelpButton>
       </section>
     </BaseLayout>
   );
