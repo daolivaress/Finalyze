@@ -44,7 +44,6 @@ const LineChart = ({dataset, title, ylabel}: LineChartProps) => {
         },
       },
       y: {
-        beginAtZero: true,
         title: {
           display: true,
           text: ylabel,

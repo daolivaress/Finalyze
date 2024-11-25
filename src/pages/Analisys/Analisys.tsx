@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useSpring, animated } from "react-spring";
 import HelpButton from "@/components/common/HelpButton/HelpButton";
+import IAButton from "@/components/IAButton/IAButton";
 
 type AnalysisProps = {
   title: string;
@@ -69,8 +70,8 @@ const Analysis = ({ title }: AnalysisProps) => {
       {
         label: "ROI (%)",
         data: sortedDataIndicators.map((item: any) => item["ROI (%)"] ?? 0),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(79, 224, 142,0.5)",
+        borderColor: "rgba(79, 224, 142,255)",
         borderWidth: 1,
       },
     ],
@@ -85,8 +86,8 @@ const Analysis = ({ title }: AnalysisProps) => {
         data: sortedDataIndicators.map(
           (item: any) => item["ROTACION INVENTARIO"] ?? 0
         ),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(79, 224, 142,0.5)",
+        borderColor: "rgba(79, 224, 142,255)",
         borderWidth: 1,
       },
     ],
@@ -101,8 +102,8 @@ const Analysis = ({ title }: AnalysisProps) => {
         data: sortedDataIndicators.map(
           (item: any) => item["MARGEN DE UTILIDAD BRUTA (%)"] ?? 0
         ),
-        borderColor: "#4CAF50",
-        backgroundColor: "rgba(76, 175, 80, 0.2)",
+        borderColor: "rgba(56,133,208,255)",
+        backgroundColor: "rgba(56,133,208,0.3)",
         borderWidth: 2,
         fill: true,
         tension: 0.4,
@@ -131,7 +132,7 @@ const Analysis = ({ title }: AnalysisProps) => {
               x: item[dataset[0]] ?? 0,
               y: item[dataset[1]] ?? 0,
             })),
-            backgroundColor: "rgba(75, 192, 192, 1)",
+            backgroundColor: "rgba(56,133,208,255)",
           },
         ],
       };
@@ -145,8 +146,8 @@ const Analysis = ({ title }: AnalysisProps) => {
             data: sortedDataIndicators.map(
               (item: any) => item[dataset[0]] ?? 0
             ),
-            backgroundColor: "rgba(255, 99, 132, 0.5)",
-            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(79, 224, 142, 0.5)",
+            borderColor: "rgba(79, 224, 142, 1)",
             borderWidth: 1,
           },
           ...(dataset[1]
@@ -156,8 +157,8 @@ const Analysis = ({ title }: AnalysisProps) => {
                   data: sortedDataIndicators.map(
                     (item: any) => item[dataset[1]] ?? 0
                   ),
-                  backgroundColor: "rgba(54, 162, 235, 0.5)",
-                  borderColor: "rgba(54, 162, 235, 1)",
+                  backgroundColor: "rgba(207, 222, 71, 0.5)",
+                  borderColor: "rgba(207, 222, 71, 1)",
                   borderWidth: 1,
                 },
               ]
@@ -174,8 +175,8 @@ const Analysis = ({ title }: AnalysisProps) => {
             data: sortedDataIndicators.map(
               (item: any) => item[dataset[0]] ?? 0
             ),
-            borderColor: "#4CAF50",
-            backgroundColor: "rgba(76, 175, 80, 0.2)",
+            borderColor: "rgba(56,133,208,255)",
+            backgroundColor: "rgba(56,133,208, 0.3)",
             borderWidth: 2,
             fill: true,
             tension: 0.4,
@@ -253,6 +254,9 @@ const Analysis = ({ title }: AnalysisProps) => {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 justify-center gap-4 px-4">
           <div className="bg-white w-full rounded-xl flex flex-col items-center p-6 border border-gray-300 lg:col-span-2 relative">
+            <div className="absolute z-50 md:right-6 right-3 max-md:top-3 ">
+              <IAButton />
+            </div>
             <div className="absolute left-0 top-0 m-4 hidden max-lg:block">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -269,7 +273,10 @@ const Analysis = ({ title }: AnalysisProps) => {
                     Crear gráfica
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator className="my-1 h-px bg-gray-200" />
-                  <DropdownMenuItem className="px-4 py-2 text-sm cursor-pointer">
+                  <DropdownMenuItem
+                    className="px-4 py-2 text-sm cursor-pointer"
+                    onSelect={(e) => e.preventDefault()} // Evita el cierre del dropdown
+                  >
                     <Select
                       onValueChange={(value) => setSelectedChartType(value)}
                       value={selectedChartType}
@@ -287,7 +294,10 @@ const Analysis = ({ title }: AnalysisProps) => {
                       </SelectContent>
                     </Select>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="px-4 py-2 text-sm cursor-pointer">
+                  <DropdownMenuItem
+                    className="px-4 py-2 text-sm cursor-pointer"
+                    onSelect={(e) => e.preventDefault()} // Evita el cierre del dropdown
+                  >
                     <Select
                       onValueChange={(value) =>
                         setSelectedIndicators((prev) => [value, prev[1]])
@@ -310,7 +320,10 @@ const Analysis = ({ title }: AnalysisProps) => {
                     </Select>
                   </DropdownMenuItem>
                   {selectedChartType === "scatter" || selectedIndicators[1] ? (
-                    <DropdownMenuItem className="px-4 py-2 text-xs cursor-pointer">
+                    <DropdownMenuItem
+                      className="px-4 py-2 text-xs cursor-pointer"
+                      onSelect={(e) => e.preventDefault()} // Evita el cierre del dropdown
+                    >
                       <Select
                         onValueChange={(value) =>
                           setSelectedIndicators((prev) => [prev[0], value])
@@ -335,28 +348,32 @@ const Analysis = ({ title }: AnalysisProps) => {
                   ) : (
                     <DropdownMenuItem
                       className="px-4 py-2 text-xs"
-                      onSelect={(e) => e.preventDefault()}
+                      onSelect={(e) => e.preventDefault()} // Evita el cierre del dropdown
                     >
                       <button
                         type="button"
                         className="w-full bg-gray-300 text-black text-xs p-2 rounded-lg"
-                        onClick={
-                          () =>
-                            setSelectedIndicators((prev) => [
-                              prev[0],
-                              "SOLVENCIA",
-                            ]) // Ajustar el segundo indicador
+                        onClick={() =>
+                          setSelectedIndicators((prev) => [
+                            prev[0],
+                            "SOLVENCIA",
+                          ])
                         }
                       >
                         Agregar segundo indicador
                       </button>
                     </DropdownMenuItem>
                   )}
-                  <DropdownMenuItem className="px-4 py-2 text-sm">
+                  <DropdownMenuItem
+                    className="px-4 py-2 text-sm"
+                    onSelect={() => {
+                      // Permite el cierre del dropdown solo al generar la gráfica
+                      handleGenerateChart();
+                    }}
+                  >
                     <button
                       type="button"
                       className="w-full bg-black text-white text-xs px-4 py-2 rounded-lg hover:bg-neutral-800 hover:scale-105 transition-all"
-                      onClick={handleGenerateChart}
                     >
                       Generar gráfica
                     </button>
@@ -449,6 +466,13 @@ const Analysis = ({ title }: AnalysisProps) => {
                 Generar gráfica
               </button>
             </form>
+
+            {!dynamicDataset && (
+              <p className="text-gray-500 mx-auto my-auto">
+                Seleccione un tipo de gráfico y los indicadores para generar la
+                gráfica.
+              </p>
+            )}
 
             {dynamicDataset && selectedChartType === "line" && (
               <LineChart

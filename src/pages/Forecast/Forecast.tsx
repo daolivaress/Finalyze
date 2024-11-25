@@ -80,8 +80,8 @@ const Forecast = ({ title }: { title: string }) => {
           {
             label: indicator,
             data: data.map((item: any) => item[indicator]),
-            borderColor: "rgba(75, 192, 192, 1)",
-            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(56,133,208,255)",
+            backgroundColor: "rgba(56,133,208, 0.3)",
             borderWidth: 2,
             fill: true,
             tension: 0.4,
