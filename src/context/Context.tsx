@@ -66,7 +66,7 @@ export const FinalyzeProvider = ({ children }: ContextProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/data");
+        const response = await fetch("https://pf-backend-2f6r.onrender.com/data");
         if (!response.ok) {
           throw new Error("Error al obtener los datos");
         }
@@ -83,7 +83,7 @@ export const FinalyzeProvider = ({ children }: ContextProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/data-indicators");
+        const response = await fetch("https://pf-backend-2f6r.onrender.com/data-indicators");
         if (!response.ok) {
           throw new Error("Error al obtener los datos");
         }
@@ -175,7 +175,7 @@ export const FinalyzeProvider = ({ children }: ContextProps) => {
     formData.append("dates", JSON.stringify(getDateRangeJson()));
 
     try {
-      const response = await fetch("http://localhost:8000/upload-excel", {
+      const response = await fetch("https://pf-backend-2f6r.onrender.com/upload-excel", {
         method: "POST",
         body: formData,
       });

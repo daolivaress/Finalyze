@@ -47,7 +47,7 @@ const Forecast = ({ title }: { title: string }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/indicadores?nombre=${encodeURIComponent(
+        `https://pf-backend-2f6r.onrender.com/prediction-indicators?nombre=${encodeURIComponent(
           indicator
         )}`
       );
