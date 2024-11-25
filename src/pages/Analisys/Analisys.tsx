@@ -491,7 +491,6 @@ const Analysis = ({ title }: AnalysisProps) => {
               <animated.p>
                 {props.number.to((n) => `${n.toFixed(2)}`)}
               </animated.p>
-              %
             </div>
             <div className="z-10">
               <p className="text-neutral-600 antialiased">

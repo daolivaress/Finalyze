@@ -2,7 +2,6 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -28,7 +27,7 @@ const HelpButton = ({ children }: HelpButtonProps) => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <div className="bg-neutral-200 py-2 px-4 rounded-md">
-            <AlertDialogTitle>Bienvenido a Finalyze</AlertDialogTitle>
+            <AlertDialogTitle>Bienvenido a Finalyze!</AlertDialogTitle>
           </div>
           <AlertDialogDescription>{children}</AlertDialogDescription>
         </AlertDialogHeader>
