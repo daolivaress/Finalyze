@@ -532,7 +532,7 @@ const Analysis = ({ title }: AnalysisProps) => {
             {responseIA && (
               <div className="px-4 py-3 text-justify">
                 <div className="flex justify-between items-center">
-                  <p className="text-lg font-semibold">
+                  <p className="text-lg max-md:text-base font-semibold">
                     Explicación del gráfico:
                   </p>
                   <div
@@ -542,7 +542,7 @@ const Analysis = ({ title }: AnalysisProps) => {
                     <IoIosClose className="size-8" />
                   </div>
                 </div>
-                <p className="text-gray-500 ">{responseIA.respuesta}</p>
+                <p className="text-gray-500 max-md:text-sm">{responseIA.respuesta}</p>
               </div>
             )}
           </div>
