@@ -2,7 +2,6 @@ import { useState } from "react";
 import { MdOutlineSort } from "react-icons/md";
 import { MdAnalytics } from "react-icons/md";
 import { FaChartLine } from "react-icons/fa";
-import { FaLightbulb } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 
 const Drawer = () => {
@@ -54,13 +53,6 @@ const Drawer = () => {
             >
               <FaChartLine />
               Pronosticos
-            </NavLink>
-            <NavLink
-              to={"/advices"}
-              className="flex items-center gap-2 text-start px-4 py-1 rounded-sm text-gray-500 transition hover:bg-gray-200 hover:text-black hover:font-semibold"
-            >
-              <FaLightbulb />
-              Consejos
             </NavLink>
           </div>
         </div>

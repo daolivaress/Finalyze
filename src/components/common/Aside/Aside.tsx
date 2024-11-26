@@ -1,6 +1,5 @@
 import { MdAnalytics } from "react-icons/md";
 import { FaChartLine } from "react-icons/fa";
-import { FaLightbulb } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 
 const Aside = () => {
@@ -17,9 +16,6 @@ const Aside = () => {
         </li>
         <li className="bg-white p-3 rounded-full transition-all hover:bg-black hover:text-white">
           <NavLink to="/forecasts"><FaChartLine /></NavLink>
-        </li>
-        <li className="bg-white p-3 rounded-full transition-all hover:bg-black hover:text-white">
-          <NavLink to="/advices"><FaLightbulb /></NavLink>
         </li>
       </ul>
     </aside>

@@ -29,10 +29,10 @@ const UploadFile = () => {
   const isButtonEnabled = context.fileName !== "" && context.dateIndex;
 
   let buttonStyle =
-    "bg-gray-300 rounded-full text-gray-500 font-medium w-full py-3";
+    "bg-gray-300 rounded-full text-gray-500 font-medium w-full py-3 mt-12";
 
   if (isButtonEnabled) {
-    buttonStyle = "bg-black rounded-full text-white font-medium w-full py-3";
+    buttonStyle = "bg-black rounded-full text-white font-medium w-full py-3 mt-10";
   }
 
   const handleSubmit = async () => {
@@ -51,7 +51,7 @@ const UploadFile = () => {
   return (
     <div className="flex h-[100vh] justify-center items-center">
       <div
-        className="bg-white md:w-[500px] md:h-[520px] w-[450px] border border-neutral-200 rounded-2xl p-10"
+        className="bg-white md:w-[500px] md:h-[420px] w-[450px] border flex flex-col  border-neutral-200 rounded-2xl p-10"
         id="upload-file"
       >
         <h3 className="font-semibold text-xl">Cargar estado financiero</h3>
@@ -75,9 +75,6 @@ const UploadFile = () => {
           <p className="text-gray-500 mt-2">Click o arrastra un archivo aquí</p>
           {context.fileName && <span className="text-gray-700 mt-2">{context.fileName}</span>}
         </div>
-        <p className="font-semibold text-lg mt-4 -mb-5">
-          Rango de fechas a predecir
-        </p>
         <button
           className={buttonStyle}
           disabled={!isButtonEnabled || isLoading}
