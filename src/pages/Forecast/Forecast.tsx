@@ -1,6 +1,5 @@
 import { useState } from "react";
 import BaseLayout from "../../layout/BaseLayout/BaseLayout";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import LineChart from "../../components/charts/LineChart/LineChart";
 import {
   Select,
@@ -12,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import HelpButton from "@/components/common/HelpButton/HelpButton";
+import IAButton from "@/components/IAButton/IAButton";
 
 export const indicators = [
   "ROTACION INVENTARIO",
@@ -145,10 +145,9 @@ const Forecast = ({ title }: { title: string }) => {
           </div>
           <div className="bg-white border border-gray-300 w-full rounded-xl max-lg:max-w-[800px] xl:max-w-screen-xl mx-auto flex flex-row-reverse items-center py-8 px-2 md:px-12 gap-4 relative">
             <div
-              id="chart-filters"
-              className="absolute top-4 right-4 bg-neutral-100 shadow-md p-3 rounded-full cursor-pointer transition-all hover:scale-110"
+              id="chart-filters" className="absolute top-4 right-4"
             >
-              <BsThreeDotsVertical className="text-lg" />
+              <IAButton/>
             </div>
             {indicatorData ? (
               <LineChart

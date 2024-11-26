@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import Slider from "@mui/material/Slider";
 import { useNavigate } from "react-router-dom";
 import { FinalyzeContext } from "../../context/Context";
 import { useContext } from "react";
@@ -79,24 +78,6 @@ const UploadFile = () => {
         <p className="font-semibold text-lg mt-4 -mb-5">
           Rango de fechas a predecir
         </p>
-        <div className="mx-3 mb-8">
-          <Slider
-            value={context.dateIndex}
-            min={0}
-            max={context.datesArray.length - 1}
-            marks={context.marks}
-            onChange={context.handleDateChange}
-            valueLabelDisplay="auto"
-            valueLabelFormat={(index) => context.formatDate(context.datesArray[index])}
-            sx={{
-              color: "black",
-              mt: 4,
-              "& .MuiSlider-markLabel": {
-                fontSize: "0.75rem", // Ajusta el tamaño de fuente aquí
-              },
-            }}
-          />
-        </div>
         <button
           className={buttonStyle}
           disabled={!isButtonEnabled || isLoading}
