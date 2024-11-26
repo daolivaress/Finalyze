@@ -320,9 +320,9 @@ const Analysis = ({ title }: AnalysisProps) => {
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Tipo de Gráfico:</SelectLabel>
-                          <SelectItem value="line">Line Chart</SelectItem>
-                          <SelectItem value="bar">Bar Chart</SelectItem>
-                          <SelectItem value="scatter">Scatter Chart</SelectItem>
+                          <SelectItem value="linea">Gráfico de linea</SelectItem>
+                          <SelectItem value="barras">Gráfico de barras</SelectItem>
+                          <SelectItem value="correlacion">Gráfico de correlación</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -431,9 +431,9 @@ const Analysis = ({ title }: AnalysisProps) => {
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Tipo de Gráfico:</SelectLabel>
-                    <SelectItem value="linea">Grafico de linea</SelectItem>
-                    <SelectItem value="barras">Grafico de barras</SelectItem>
-                    <SelectItem value="correlacion">Grafico de correlacion</SelectItem>
+                    <SelectItem value="linea">Gráfico de linea</SelectItem>
+                    <SelectItem value="barras">Gráfico de barras</SelectItem>
+                    <SelectItem value="correlacion">Gráfico de correlacion</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
