@@ -124,7 +124,7 @@ const Analysis = ({ title }: AnalysisProps) => {
   };
 
   const chartTypeDataset = (dataset: string[], chartType: string) => {
-    if (chartType === "scatter") {
+    if (chartType === "correlacion") {
       const scatterDataset = {
         datasets: [
           {
@@ -138,7 +138,7 @@ const Analysis = ({ title }: AnalysisProps) => {
         ],
       };
       return scatterDataset;
-    } else if (chartType === "bar") {
+    } else if (chartType === "barras") {
       const barChartDataset = {
         labels,
         datasets: [
@@ -167,7 +167,7 @@ const Analysis = ({ title }: AnalysisProps) => {
         ],
       };
       return barChartDataset;
-    } else if (chartType === "line") {
+    } else if (chartType === "linea") {
       const lineChartDataset = {
         labels,
         datasets: [
@@ -431,9 +431,9 @@ const Analysis = ({ title }: AnalysisProps) => {
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Tipo de Gráfico:</SelectLabel>
-                    <SelectItem value="line">Line Chart</SelectItem>
-                    <SelectItem value="bar">Bar Chart</SelectItem>
-                    <SelectItem value="scatter">Scatter Chart</SelectItem>
+                    <SelectItem value="linea">Grafico de linea</SelectItem>
+                    <SelectItem value="barras">Grafico de barras</SelectItem>
+                    <SelectItem value="correlacion">Grafico de correlacion</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -459,7 +459,7 @@ const Analysis = ({ title }: AnalysisProps) => {
                 </SelectContent>
               </Select>
 
-              {selectedChartType === "scatter" || selectedIndicators[1] ? (
+              {selectedChartType === "correlacion" || selectedIndicators[1] ? (
                 <Select
                   onValueChange={(value) =>
                     setSelectedIndicators((prev) => [prev[0], value])
@@ -507,21 +507,21 @@ const Analysis = ({ title }: AnalysisProps) => {
               </p>
             )}
 
-            {dynamicDataset && selectedChartType === "line" && (
+            {dynamicDataset && selectedChartType === "linea" && (
               <LineChart
                 dataset={dynamicDataset}
                 title="Gráfico Personalizado"
                 ylabel="Valores"
               />
             )}
-            {dynamicDataset && selectedChartType === "bar" && (
+            {dynamicDataset && selectedChartType === "barras" && (
               <BarChart
                 dataset={dynamicDataset}
                 title="Gráfico Personalizado"
                 ylabel="Valores"
               />
             )}
-            {dynamicDataset && selectedChartType === "scatter" && (
+            {dynamicDataset && selectedChartType === "correlacion" && (
               <ScatterChart
                 dataset={dynamicDataset}
                 title="Gráfico Personalizado"
