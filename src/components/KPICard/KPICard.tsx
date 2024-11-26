@@ -40,7 +40,7 @@ const KPICard = ({ value, title }: KPICardProps) => {
           title={title} // Tooltip con el texto completo
         >
           <span className="block sm:hidden">
-            {title.length > 16 ? `${title.slice(0, 16)}...` : title}
+            {title.length > 15 ? `${title.slice(0, 12)}...` : title}
           </span>
           <span className="hidden sm:block">{title}</span>
         </p>
