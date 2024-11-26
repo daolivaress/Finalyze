@@ -78,7 +78,7 @@ export const FinalyzeProvider = ({ children }: ContextProps) => {
     };
 
     fetchData();
-  }, []);
+  }, []); 
 
   useEffect(() => {
     const fetchData = async () => {

@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import HelpButton from "@/components/common/HelpButton/HelpButton";
-import IAButton from "@/components/IAButton/IAButton";
+// import IAButton from "@/components/IAButton/IAButton";
 
 export const indicators = [
   "ROTACION INVENTARIO",
@@ -105,7 +105,7 @@ const Forecast = ({ title }: { title: string }) => {
           <div>
             <h1 className="font-semibold text-6xl mb-1">{title}</h1>
             <p className="text-[var(--font-secondary-color)] font-bold">
-              Jan 1 - Oct 29, 2024
+              Sep 1, 2023 - Ago 1, 2024
             </p>
           </div>
         </div>
@@ -144,11 +144,9 @@ const Forecast = ({ title }: { title: string }) => {
             ))}
           </div>
           <div className="bg-white border border-gray-300 w-full rounded-xl max-lg:max-w-[800px] xl:max-w-screen-xl mx-auto flex flex-row-reverse items-center py-8 px-2 md:px-12 gap-4 relative">
-            <div
-              id="chart-filters" className="absolute top-4 right-4"
-            >
-              <IAButton/>
-            </div>
+            {/* <div className="absolute top-4 right-4">
+              <IAButton />
+            </div> */}
             {indicatorData ? (
               <LineChart
                 dataset={indicatorData}

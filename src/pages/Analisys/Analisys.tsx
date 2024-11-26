@@ -7,6 +7,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import KPICard from "@/components/KPICard/KPICard";
 import { FinalyzeContext, FinalyzeContextType } from "@/context/Context";
 import { indicators } from "../Forecast/Forecast";
+import { IoIosClose } from "react-icons/io";
 import {
   Select,
   SelectContent,
@@ -237,6 +238,38 @@ const Analysis = ({ title }: AnalysisProps) => {
     setLiquidityClass(newClass);
   }, [currentLiquidity]);
 
+  type IAResponseType = {
+    respuesta: string;
+  };
+
+  const [responseIA, setResponseIA] = useState<IAResponseType | null>(null);
+
+  const handleIAResponse = async () => {
+    try {
+      const response = await fetch(
+        "https://pf-backend-2f6r.onrender.com/preguntar",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nombres_variables: selectedIndicators,
+            tipo_grafico: selectedChartType,
+          }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Error al obtener los datos");
+      }
+      const result = await response.json();
+      setResponseIA(result);
+      console.log(result);
+    } catch (error) {
+      console.error("Error al obtener los datos:", error);
+    }
+  };
+
   return (
     <BaseLayout>
       <section>
@@ -244,7 +277,7 @@ const Analysis = ({ title }: AnalysisProps) => {
           <div>
             <h1 className="font-semibold text-6xl mb-1">{title}</h1>
             <p className="text-[var(--font-secondary-color)] font-bold">
-              Jan 1 - Oct 29, 2024
+              Sep 1, 2023 - Ago 1, 2024
             </p>
           </div>
           <div className="flex gap-4 max-lg:mt-4">
@@ -252,10 +285,10 @@ const Analysis = ({ title }: AnalysisProps) => {
             <KPICard title="Costo de productos y servicios" value={costos} />
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 justify-center gap-4 px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-[auto,1fr] justify-center gap-4 px-4">
           <div className="bg-white w-full rounded-xl flex flex-col items-center p-6 border border-gray-300 lg:col-span-2 relative">
-            <div className="absolute z-50 md:right-6 right-3 max-md:top-3 ">
-              <IAButton />
+            <div className="absolute z-50 md:right-6 right-3 max-md:top-3 top-5">
+              <IAButton onclick={handleIAResponse} />
             </div>
             <div className="absolute left-0 top-0 m-4 hidden max-lg:block">
               <DropdownMenu>
@@ -468,7 +501,7 @@ const Analysis = ({ title }: AnalysisProps) => {
             </form>
 
             {!dynamicDataset && (
-              <p className="text-gray-500 mx-auto my-auto">
+              <p className="text-gray-500 mx-auto my-4 max-lg:text-center max-lg:mt-12 max-lg:mb-8">
                 Seleccione un tipo de gráfico y los indicadores para generar la
                 gráfica.
               </p>
@@ -495,6 +528,22 @@ const Analysis = ({ title }: AnalysisProps) => {
                 xlabel="Eje X"
                 ylabel="Eje Y"
               />
+            )}
+            {responseIA && (
+              <div className="px-4 py-3 text-justify">
+                <div className="flex justify-between items-center">
+                  <p className="text-lg font-semibold">
+                    Explicación del gráfico:
+                  </p>
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => setResponseIA(null)}
+                  >
+                    <IoIosClose className="size-8" />
+                  </div>
+                </div>
+                <p className="text-gray-500 ">{responseIA.respuesta}</p>
+              </div>
             )}
           </div>
 
