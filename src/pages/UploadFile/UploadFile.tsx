@@ -73,7 +73,7 @@ const UploadFile = () => {
           />
           <IoCloudUploadOutline className="text-6xl text-gray-500" />
           <p className="text-gray-500 mt-2">Click o arrastra un archivo aquí</p>
-          {context.fileName && <span className="text-gray-700 mt-2">{context.fileName}</span>}
+          {context.fileName && <span className="text-gray-700 mt-2 text-sm">{context.fileName}</span>}
         </div>
         <button
           className={buttonStyle}
